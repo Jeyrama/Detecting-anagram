@@ -21,3 +21,19 @@ let isAnagram = function(test, original) {
 };
 
 // or
+
+let isItAnagram = function(test, original) {
+  if (test.length !== original.length) return false;
+  test = test.toUpperCase();
+  original = original.toUpperCase();
+  const m1 = getMap(test);
+  const m2 = getMap(original);
+  return Object.keys(m1).every((key) => m1[key] === m2[key]);
+};
+
+function getMap(word) {
+  return word.split('').reduce((a, l) => {
+    a[l] ? a[l]++ : a[l] = 1;
+    return a;
+  }, {});
+}
